@@ -6,11 +6,11 @@
 ## Install & Requirements
 The code has been tested on pytorch=0.4.0 and python3.6. Please refer to `requirements.txt` for detailed information. 
 
-Alternatively, you can run it with the provided [Docker image](docker/README.md).
+Alternatively, you can run it with the provided [Docker image](docker/README.md) which also can be used on Windows with WSL2.
 
 **To Install python packages**
 ```
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 ```
 **To Install flownet2 modules**
 ```
@@ -66,6 +66,7 @@ python tools/frame_inpaint.py --test_img xxx.png --test_mask xxx.png --image_sha
 * The frames and masks of our movie demo have been put into [Google Drive](https://drive.google.com/drive/folders/1z2n1LzVY8gjvy7ezF_tuuMgVouR_pFcz?usp=sharing).
 * The weights of DAVIS's refined stages have been released and you can download from [here](https://drive.google.com/drive/folders/1zIamN-DzvknZLf5QAGCfvWs7a6qUqaaC?usp=sharing).
 Please refer to [Usage](#Usage) for using the Multi-Scale models.
+
 ## FAQ
 * Errors when running install_scripts.sh
 if you meet some problem about gcc when compiling, pls check if the following commands will help:
@@ -73,6 +74,11 @@ if you meet some problem about gcc when compiling, pls check if the following co
 export CXXFLAGS="-std=c++11"
 export CFLAGS="-std=c99"
 ```
+
+## Compatibility
+
+* Tested on Ubuntu 18.04 with a GTX 1060 GPU (drivers 410.104). 
+* Tested on WSL2 of Windows 10 Pro Insider Build 20236 and Ubuntu 18.04 subsytem with GTX 1050 GPU and RTX 2080.
 
 ## Citation
 ```
