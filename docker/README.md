@@ -13,7 +13,30 @@ Note: You will need an NVIDIA GPU and a Linux OS or WSL2 of Windows Insider Buil
 * [WSL2](https://docs.microsoft.com/en-us/windows/wsl/install-win10)
 * [Ubuntu-Subsystem](https://docs.microsoft.com/en-us/windows/wsl/install-manual)
 * [download-ubuntu-1804-for-wsl](https://aka.ms/wsl-ubuntu-1804)
-* [nivida-docker](https://docs.nvidia.com/cuda/wsl-user-guide/index.html)
+* [Docker-Compose](https://docs.docker.com/compose/install/)
+Install Docker Compose inside the Ubuntu 18.04 WSL2 Window:
+```
+sudo sh -c 'echo "deb http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64 /" > /etc/apt/sources.list.d/cuda.list'
+
+sudo apt-get update
+
+sudo apt-get install -y cuda-toolkit-11-0
+
+curl https://get.docker.com | sh
+distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
+curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add -
+curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | sudo tee /etc/apt/sources.list.d/nvidia-docker.list
+curl -s -L https://nvidia.github.io/libnvidia-container/experimental/$distribution/libnvidia-container-experimental.list | sudo tee /etc/apt/sources.list.d/libnvidia-container-experimental.list
+sudo apt-get update
+sudo apt-get install -y nvidia-docker2
+```
+Open a separate WSL 2 window and start the Docker daemon again using the following commands to complete the installation:
+```
+sudo service docker stop
+sudo service docker start
+```
+
+Test NVIDIA Docker: `sudo docker run --gpus all nvcr.io/nvidia/k8s/cuda-sample:nbody nbody -gpu -benchmark`
 
 ## Downloading the required files
 * Download the `frames` and `masks` folders from [here](https://drive.google.com/drive/folders/13aMItboZBxPnbjlOCbKLg7nxZgBWQt9P) and place them on the `demo` folder.
@@ -36,7 +59,7 @@ Note: You will need an NVIDIA GPU and a Linux OS or WSL2 of Windows Insider Buil
 
 2. Access the conatiner: `docker exec -it inpainting bash` 
 
-## Start the Docker Container on Windows WSL2 inside the Ubuntu 18.04 Subsystem
+## Start the Docker Container on Windows inside the Ubuntu 18.04 Subsystem WSL2 Window
 1. From the `docker` folder run: `docker-compose up -d` 
 
 2. Run the container: `sudo docker run --shm-size 4096MB --gpus all -v ~/Deep-Flow-Guided-Video-Inpainting-WSL2:/inpainting -t -d --name my_inpainting inpainting` 
