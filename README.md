@@ -28,7 +28,7 @@ and the mask of each frame should be put into `xxx/video_name/masks`.
 And please download the resources of the demo and model weights from [here](https://drive.google.com/drive/folders/1a2FrHIQGExJTHXxSIibZOGMukNrypr_g?usp=sharing).
 An example demo containing frames and masks has been put into the demo and running the following command will get the result:
 ```
-python tools/video_inpaint.py --frame_dir ./demo/frames --MASK_ROOT ./demo/masks --img_size 512 832 --FlowNet2 --DFC --ResNet101 --Propagation 
+python3 tools/video_inpaint.py --frame_dir ./demo/frames --MASK_ROOT ./demo/masks --img_size 512 832 --FlowNet2 --DFC --ResNet101 --Propagation 
 ```
 <img src="https://github.com/nbei/Deep-Flow-Guided-Video-Inpainting/blob/master/gif/flamingo.gif" width="850"/>
 
@@ -38,7 +38,7 @@ Please refer to [tools](https://github.com/nbei/Deep-Flow-Guided-Video-Inpaintin
 * For fixed region inpainting, we provide the model weights of refined stages in DAVIS. Please download the lady-running resources [link](https://drive.google.com/drive/folders/1GHV1g1IkpGa2qhRnZE2Fv30RXrbHPH0O?usp=sharing) and 
 model weights [link](https://drive.google.com/drive/folders/1zIamN-DzvknZLf5QAGCfvWs7a6qUqaaC?usp=sharing). The following command can help you to get the result:
 ```
-CUDA_VISIBLE_DEVICES=0 python tools/video_inpaint.py --frame_dir ./demo/lady-running/frames \
+CUDA_VISIBLE_DEVICES=0 python3 tools/video_inpaint.py --frame_dir ./demo/lady-running/frames \
 --MASK_ROOT ./demo/lady-running/mask_bbox.png \
 --img_size 448 896 --DFC --FlowNet2 --Propagation \
 --PRETRAINED_MODEL_1 ./pretrained_models/resnet50_stage1.pth \
@@ -51,12 +51,12 @@ You can just change the **th_warp** param for getting better results in your vid
 
 * To extract flow for videos:
 ```
-python tools/infer_flownet2.py --frame_dir xxx/video_name/frames
+python3 tools/infer_flownet2.py --frame_dir xxx/video_name/frames
 ```
 
 * To use the Deepfillv1-Pytorch model for image inpainting,
 ```
-python tools/frame_inpaint.py --test_img xxx.png --test_mask xxx.png --image_shape 512 512
+python3 tools/frame_inpaint.py --test_img xxx.png --test_mask xxx.png --image_shape 512 512
 ```
 
 ## Update
